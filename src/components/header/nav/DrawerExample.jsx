@@ -7,28 +7,36 @@ import {
   DrawerContent,
   DrawerCloseButton,
   Button,
-  useDisclosure,
   VStack,
   HStack,
   Box,
   Avatar,
   Text,
   Flex,
+  useDisclosure,
 } from '@chakra-ui/react';
-import { FaBars } from 'react-icons/fa'; // Importa el icono de tres barritas desde react-icons
+import { FaBars } from 'react-icons/fa';
+import LoginModal from './admin/Login'; // Importa el componente del modal de login
+import RegisterModal from './admin/Register'; // Importa el componente del modal de registro
 
 function DrawerExample() {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { isOpen, onOpen, onClose } = useDisclosure(); // Controla el Drawer
+  const { isOpen: isLoginOpen, onOpen: onLoginOpen, onClose: onLoginClose } = useDisclosure(); // Controla el modal de login
+  const { isOpen: isRegisterOpen, onOpen: onRegisterOpen, onClose: onRegisterClose } = useDisclosure(); // Controla el modal de registro
   const btnRef = React.useRef();
 
-  // Función para redirigir al inicio
-  const redirectToHome = () => {
-    window.location.href = "/"; // Redirige a la página de inicio
+  const handleLoginClick = () => {
+    onClose(); // Cierra el Drawer
+    onLoginOpen(); // Abre el modal de login
+  };
+
+  const handleRegisterClick = () => {
+    onClose(); // Cierra el Drawer
+    onRegisterOpen(); // Abre el modal de registro
   };
 
   return (
     <>
-      {/* Contenedor para posicionar el botón en la parte superior derecha */}
       <Box position="absolute" top="10px" right="10px">
         <Button
           ref={btnRef}
@@ -36,7 +44,7 @@ function DrawerExample() {
           colorScheme="#FF6533"
           onClick={onOpen}
         >
-          <FaBars /> {/* Icono de menú de tres barritas */}
+          <FaBars />
         </Button>
       </Box>
 
@@ -53,7 +61,6 @@ function DrawerExample() {
 
           <DrawerBody>
             <VStack spacing={6} align="stretch">
-              {/* Sección de perfil */}
               <Flex align="center" mb={4}>
                 <Avatar name="User Avatar" src="/path/to/avatar.jpg" size="lg" />
                 <Box ml={4}>
@@ -62,20 +69,17 @@ function DrawerExample() {
                 </Box>
               </Flex>
 
-              {/* Botones para ingresar y crear cuenta */}
               <HStack spacing={4} mb={4}>
-                <Button colorScheme="teal" onClick={onClose}>
+                <Button colorScheme="teal" onClick={handleLoginClick}>
                   Ingresar
                 </Button>
-                <Button colorScheme="teal" variant="outline" onClick={onClose}>
+                <Button colorScheme="teal" variant="outline" onClick={handleRegisterClick}>
                   Crear tu cuenta
                 </Button>
               </HStack>
 
-              {/* Botones de navegación */}
               <VStack spacing={4} align="stretch">
-                {/* Redirige a la página de inicio */}
-                <Button colorScheme="teal" onClick={redirectToHome}>Inicio</Button>
+                <Button colorScheme="teal" onClick={onClose}>Inicio</Button>
                 <Button colorScheme="teal" onClick={onClose}>Adoptar</Button>
                 <Button colorScheme="teal" onClick={onClose}>Perdidos</Button>
               </VStack>
@@ -83,6 +87,10 @@ function DrawerExample() {
           </DrawerBody>
         </DrawerContent>
       </Drawer>
+
+      {/* Modales */}
+      <LoginModal isOpen={isLoginOpen} onClose={onLoginClose} onOpenRegister={onRegisterOpen} />
+      <RegisterModal isOpen={isRegisterOpen} onClose={onRegisterClose} />
     </>
   );
 }
