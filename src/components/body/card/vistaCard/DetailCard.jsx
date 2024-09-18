@@ -1,4 +1,4 @@
-import { Box, Image, Text, Table, Tr, Td, Tbody, Button, SimpleGrid, HStack } from '@chakra-ui/react';
+import { Box, Image, Text, Button, HStack, SimpleGrid, GridItem } from '@chakra-ui/react';
 import { useState } from 'react';
 
 function AnimalDetails() {
@@ -6,13 +6,14 @@ function AnimalDetails() {
 
   const images = [
     "https://via.placeholder.com/400x250",
-    "https://via.placeholder.com/400x250/0000FF",
-    "https://via.placeholder.com/400x250/FF0000",
-    "https://via.placeholder.com/400x250/00FF00"
+    "https://via.placeholder.com/400x250",
+    "https://via.placeholder.com/400x250",
+    "https://via.placeholder.com/400x250"
   ];
 
   return (
-    <Box maxW="lg" mx="auto" p="4" boxShadow="lg" borderRadius="lg" bg="white">
+    <Box maxW="md" mx="auto" p="6" boxShadow="lg" borderRadius="lg" bg="white">
+     
       {/* Imagen principal */}
       <Image src={selectedImage} alt="Imagen principal del animal" w="full" h="300px" objectFit="cover" borderRadius="md" />
 
@@ -39,43 +40,48 @@ function AnimalDetails() {
         Perritos en Adopción
       </Text>
 
-      {/* Tabla con información del animal */}
-      <Table variant="simple" mt="4">
-        <Tbody>
-          <Tr>
-            <Td fontWeight="bold">Sexo</Td>
-            <Td>Macho/Hembra</Td>
-          </Tr>
-          <Tr>
-            <Td fontWeight="bold">Tamaño</Td>
-            <Td>Mediano</Td>
-          </Tr>
-          <Tr>
-            <Td fontWeight="bold">Personalidad</Td>
-            <Td>Juguetón, cariñoso</Td>
-          </Tr>
-          <Tr>
-            <Td fontWeight="bold">Año</Td>
-            <Td>2022</Td>
-          </Tr>
-          <Tr>
-            <Td fontWeight="bold">Ubicación</Td>
-            <Td>Talitas / Tucumán</Td>
-          </Tr>
-          <Tr>
-            <Td fontWeight="bold">Tipo de Animal</Td>
-            <Td>Perro</Td>
-          </Tr>
-          <Tr>
-            <Td fontWeight="bold">Prioridad</Td>
-            <Td>Urgente</Td>
-          </Tr>
-          <Tr>
-            <Td fontWeight="bold">Descripción</Td>
-            <Td>Es un perrito muy amigable que está buscando un hogar amoroso.</Td>
-          </Tr>
-        </Tbody>
-      </Table>
+      {/* Información del animal con grid centrado */}
+      <SimpleGrid columns={2} spacing={4} mt={4} justifyItems="center">
+        <GridItem>
+          <Text fontWeight="bold" textAlign="center">Sexo</Text>
+          <Text textAlign="center">Macho/Hembra</Text>
+        </GridItem>
+        <GridItem>
+          <Text fontWeight="bold" textAlign="center">Tamaño</Text>
+          <Text textAlign="center">Mediano</Text>
+        </GridItem>
+
+        <GridItem>
+          <Text fontWeight="bold" textAlign="center">Personalidad</Text>
+          <Text textAlign="center">Juguetón, cariñoso</Text>
+        </GridItem>
+        <GridItem>
+          <Text fontWeight="bold" textAlign="center">Año</Text>
+          <Text textAlign="center">2022</Text>
+        </GridItem>
+
+        <GridItem>
+          <Text fontWeight="bold" textAlign="center">Ubicación</Text>
+          <Text textAlign="center">Talitas / Tucumán</Text>
+        </GridItem>
+        <GridItem>
+          <Text fontWeight="bold" textAlign="center">Tipo de Animal</Text>
+          <Text textAlign="center">Perro</Text>
+        </GridItem>
+
+        {/* Prioridad en una fila */}
+        <GridItem colSpan={2}>
+          <Text fontWeight="bold" textAlign="center">Prioridad</Text>
+          <Text textAlign="center">Urgente</Text>
+        </GridItem>
+
+        {/* Descripción con centrado y márgenes laterales */}
+        <GridItem colSpan={2}>
+          <Text textAlign="center" mx="10px" mt="4">
+            Es un perrito muy amigable que está buscando un hogar amoroso.
+          </Text>
+        </GridItem>
+      </SimpleGrid>
 
       {/* Botón para Adoptar */}
       <Button colorScheme="teal" size="lg" mt="6" w="full">

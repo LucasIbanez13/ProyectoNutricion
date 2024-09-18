@@ -15,10 +15,16 @@ import {
   Text,
   Flex,
 } from '@chakra-ui/react';
+import { FaBars } from 'react-icons/fa'; // Importa el icono de tres barritas desde react-icons
 
 function DrawerExample() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = React.useRef();
+
+  // Función para redirigir al inicio
+  const redirectToHome = () => {
+    window.location.href = "/"; // Redirige a la página de inicio
+  };
 
   return (
     <>
@@ -26,23 +32,24 @@ function DrawerExample() {
       <Box position="absolute" top="10px" right="10px">
         <Button
           ref={btnRef}
-          colorScheme='teal'
+          fontSize="27px"
+          colorScheme="#FF6533"
           onClick={onOpen}
         >
-          X
+          <FaBars /> {/* Icono de menú de tres barritas */}
         </Button>
       </Box>
 
       <Drawer
         isOpen={isOpen}
-        placement='right'
+        placement="right"
         onClose={onClose}
         finalFocusRef={btnRef}
       >
         <DrawerOverlay />
         <DrawerContent>
           <DrawerCloseButton />
-          <DrawerHeader>TuCMascota</DrawerHeader>
+          <DrawerHeader>Huellitas a la obra</DrawerHeader>
 
           <DrawerBody>
             <VStack spacing={6} align="stretch">
@@ -54,22 +61,23 @@ function DrawerExample() {
                   <Text>Ingresa a tu cuenta</Text>
                 </Box>
               </Flex>
-              
+
               {/* Botones para ingresar y crear cuenta */}
               <HStack spacing={4} mb={4}>
-                <Button colorScheme='teal' onClick={onClose}>
+                <Button colorScheme="teal" onClick={onClose}>
                   Ingresar
                 </Button>
-                <Button colorScheme='teal' variant='outline' onClick={onClose}>
+                <Button colorScheme="teal" variant="outline" onClick={onClose}>
                   Crear tu cuenta
                 </Button>
               </HStack>
 
               {/* Botones de navegación */}
               <VStack spacing={4} align="stretch">
-                <Button colorScheme='teal' onClick={onClose}>Inicio</Button>
-                <Button colorScheme='teal' onClick={onClose}>Adoptar</Button>
-                <Button colorScheme='teal' onClick={onClose}>Perdidos</Button>
+                {/* Redirige a la página de inicio */}
+                <Button colorScheme="teal" onClick={redirectToHome}>Inicio</Button>
+                <Button colorScheme="teal" onClick={onClose}>Adoptar</Button>
+                <Button colorScheme="teal" onClick={onClose}>Perdidos</Button>
               </VStack>
             </VStack>
           </DrawerBody>

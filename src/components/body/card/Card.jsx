@@ -1,7 +1,14 @@
-import { Box, Image, Text, IconButton, Badge, Button, SimpleGrid } from '@chakra-ui/react';
+import { Box, Image, Text, IconButton, Button } from '@chakra-ui/react';
 import { FaHeart } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 
 function AdoptionCard() {
+  const navigate = useNavigate();
+
+  const handleViewMore = () => {
+    navigate('/details');
+  };
+
   return (
     <Box
       maxW="sm"
@@ -11,6 +18,7 @@ function AdoptionCard() {
       boxShadow="md"
       position="relative"
       bg="white"
+      mb="4"
     >
       {/* Imagen de la mascota */}
       <Image
@@ -60,22 +68,12 @@ function AdoptionCard() {
         </Text>
 
         {/* Botón "Ver más" */}
-        <Button colorScheme="teal" mt="4" w="full">
-          <a href="">Ver más</a>
+        <Button colorScheme="teal" mt="4" w="full" onClick={handleViewMore}>
+          Ver más
         </Button>
       </Box>
     </Box>
   );
 }
 
-function AdoptionCardGrid() {
-  return (
-    <SimpleGrid columns={[1, null, 3]} spacing="40px" p="4">
-      <AdoptionCard />
-      <AdoptionCard />
-      <AdoptionCard />
-    </SimpleGrid>
-  );
-}
-
-export default AdoptionCardGrid;
+export default AdoptionCard;
