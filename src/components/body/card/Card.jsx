@@ -1,4 +1,5 @@
-import { Box, Image, Text, IconButton, Button } from '@chakra-ui/react';
+import React from 'react';
+import { Box, Image, Text, IconButton, Button, Flex } from '@chakra-ui/react';
 import { FaHeart } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 
@@ -63,7 +64,7 @@ function AdoptionCard() {
         </Text>
 
         {/* Sexo */}
-        <Text fontSize="md" mb="2" position="absolute" bottom="120px" left="2px">
+        <Text fontSize="md" mb="2" textAlign="center">
           Macho/Hembra
         </Text>
 
@@ -76,4 +77,20 @@ function AdoptionCard() {
   );
 }
 
-export default AdoptionCard;
+function CardContainer() {
+  return (
+    <Flex
+      direction="row"
+      wrap="wrap"
+      justify="center"
+      p={4}
+    >
+      <AdoptionCard />
+      <AdoptionCard />
+      <AdoptionCard />
+      {/* Añadir más tarjetas aquí */}
+    </Flex>
+  );
+}
+
+export default CardContainer;
