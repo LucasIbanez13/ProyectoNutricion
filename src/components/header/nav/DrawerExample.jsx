@@ -16,23 +16,35 @@ import {
   useDisclosure,
 } from '@chakra-ui/react';
 import { FaBars } from 'react-icons/fa';
-import LoginModal from './admin/Login'; // Importa el componente del modal de login
-import RegisterModal from './admin/Register'; // Importa el componente del modal de registro
+import { useNavigate } from 'react-router-dom'; // Importa useNavigate
+import LoginModal from './admin/Login';
+import RegisterModal from './admin/Register';
 
 function DrawerExample() {
-  const { isOpen, onOpen, onClose } = useDisclosure(); // Controla el Drawer
-  const { isOpen: isLoginOpen, onOpen: onLoginOpen, onClose: onLoginClose } = useDisclosure(); // Controla el modal de login
-  const { isOpen: isRegisterOpen, onOpen: onRegisterOpen, onClose: onRegisterClose } = useDisclosure(); // Controla el modal de registro
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { isOpen: isLoginOpen, onOpen: onLoginOpen, onClose: onLoginClose } = useDisclosure();
+  const { isOpen: isRegisterOpen, onOpen: onRegisterOpen, onClose: onRegisterClose } = useDisclosure();
   const btnRef = React.useRef();
+  const navigate = useNavigate(); // Hook para navegar entre rutas
 
   const handleLoginClick = () => {
-    onClose(); // Cierra el Drawer
-    onLoginOpen(); // Abre el modal de login
+    onClose();
+    onLoginOpen();
   };
 
   const handleRegisterClick = () => {
+    onClose();
+    onRegisterOpen();
+  };
+
+  const handleHomeClick = () => {
     onClose(); // Cierra el Drawer
-    onRegisterOpen(); // Abre el modal de registro
+    navigate('/'); // Navega a la página de inicio
+  };
+
+  const handleLostAnimalsClick = () => {
+    onClose(); // Cierra el Drawer
+    navigate('/perdidos'); // Navega a la ruta de animales perdidos
   };
 
   return (
@@ -79,9 +91,9 @@ function DrawerExample() {
               </HStack>
 
               <VStack spacing={4} align="stretch">
-                <Button colorScheme="teal" onClick={onClose}>Inicio</Button>
+                <Button colorScheme="teal" onClick={handleHomeClick}>Inicio</Button> {/* Cambia la ruta a "/" */}
                 <Button colorScheme="teal" onClick={onClose}>Adoptar</Button>
-                <Button colorScheme="teal" onClick={onClose}>Perdidos</Button>
+                <Button colorScheme="teal" onClick={handleLostAnimalsClick}>Perdidos</Button> {/* Cambia la ruta a "/perdidos" */}
               </VStack>
             </VStack>
           </DrawerBody>
