@@ -7,7 +7,11 @@ function Publicar() {
   const navigate = useNavigate(); // Hook para navegar entre rutas
 
   const handlePublishClick = () => {
-    navigate('/createPublic'); // Navega a la ruta del formulario
+    navigate('/createPublic'); // Navega a la ruta del formulario para publicar
+  };
+
+  const handlePerdidoClick = () => {
+    navigate('/createPerdidos'); // Navega a la ruta del formulario para perdidos
   };
 
   return (
@@ -27,7 +31,7 @@ function Publicar() {
           bg="white"
           boxShadow="md"
           cursor="pointer"
-          onClick={handlePublishClick} // Maneja el clic para navegar
+          onClick={handlePublishClick} // Maneja el clic para navegar a "Publicar"
           _hover={{ boxShadow: 'xl', transform: 'scale(1.05)' }}
           transition="all 0.2s ease-in-out"
         >
@@ -47,6 +51,7 @@ function Publicar() {
           bg="white"
           boxShadow="md"
           cursor="pointer"
+          onClick={handlePerdidoClick} // Maneja el clic para navegar a "Perdido"
           _hover={{ boxShadow: 'xl', transform: 'scale(1.05)' }}
           transition="all 0.2s ease-in-out"
         >
