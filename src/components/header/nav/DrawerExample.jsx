@@ -46,6 +46,10 @@ function DrawerExample() {
     onClose(); // Cierra el Drawer
     navigate('/perdidos'); // Navega a la ruta de animales perdidos
   };
+  const handlePublicarClick = () => {
+    onClose(); // Cierra el Drawer
+    navigate('/publicar'); // Navega a la ruta de animales perdidos
+  };
 
   return (
     <>
@@ -94,6 +98,7 @@ function DrawerExample() {
                 <Button colorScheme="teal" onClick={handleHomeClick}>Inicio</Button> {/* Cambia la ruta a "/" */}
                 <Button colorScheme="teal" onClick={onClose}>Adoptar</Button>
                 <Button colorScheme="teal" onClick={handleLostAnimalsClick}>Perdidos</Button> {/* Cambia la ruta a "/perdidos" */}
+                <Button colorScheme="teal" onClick={handlePublicarClick}>Publicar</Button> {/* Cambia la ruta a "/perdidos" */}
               </VStack>
             </VStack>
           </DrawerBody>
