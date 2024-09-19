@@ -108,39 +108,48 @@ function CreatePublic() {
         </FormControl>
 
         {/* Imágenes adicionales */}
-        <FormControl>
-          <FormLabel>Más Imágenes</FormLabel>
-          <HStack spacing={4}>
-            {additionalImages.map((image, index) => (
-              <Box
-                key={index}
-                border="1px"
-                borderColor="gray.300"
-                borderRadius="md"
-                w="100px"
-                h="100px"
-                display="flex"
-                alignItems="center"
-                justifyContent="center"
-                bg="gray.100"
-              >
-                {image ? (
-                  <Image src={image} alt={`Imagen adicional ${index + 1}`} boxSize="100%" objectFit="cover" />
-                ) : (
-                  <Text color="gray.500" fontSize="sm">Más imagenes</Text>
-                )}
-                <Input
-                  type="file"
-                  accept="image/*"
-                  position="absolute"
-                  opacity="0"
-                  cursor="pointer"
-                  onChange={(e) => handleAdditionalImageChange(index, e)}
-                />
-              </Box>
-            ))}
-          </HStack>
-        </FormControl>
+        // ... (código anterior)
+
+<FormControl>
+  <FormLabel>Más Imágenes</FormLabel>
+  <HStack spacing={4}>
+    {additionalImages.map((image, index) => (
+      <Box
+        key={index}
+        margin="auto"
+        border="1px"
+        borderColor="gray.300"
+        borderRadius="md"
+        w="80px" // Cambiado a 80px
+        h="80px" // Cambiado a 80px
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+        bg="gray.100"
+        position="relative" // Asegúrate de que la posición sea relativa
+      >
+        {image ? (
+          <Image src={image} alt={`Imagen adicional ${index + 1}`} boxSize="100%" objectFit="cover" />
+        ) : (
+          <Text color="gray.500" fontSize="xs">Más imágenes</Text> // Cambiado a fontSize="xs"
+        )}
+        <Input
+          type="file"
+          accept="image/*"
+          position="absolute"
+          opacity="0"
+          cursor="pointer"
+          onChange={(e) => handleAdditionalImageChange(index, e)}
+          width="100%" // Asegúrate de que el input cubra el cuadro
+          height="100%" // Asegúrate de que el input cubra el cuadro
+        />
+      </Box>
+    ))}
+  </HStack>
+</FormControl>
+
+
+
 
         {/* Título */}
         <FormControl>
