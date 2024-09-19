@@ -45,7 +45,7 @@ function AdoptionCard() {
       {/* Ubicación en la esquina inferior derecha de la imagen */}
       <Text
         position="absolute"
-        bottom="130px" 
+        bottom="160px" 
         right="2px" 
         color="white"
         bg="rgba(0, 0, 0, 0.1)"
