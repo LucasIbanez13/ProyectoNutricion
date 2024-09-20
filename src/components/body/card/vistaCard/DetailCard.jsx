@@ -84,7 +84,7 @@ function AnimalDetails() {
       </SimpleGrid>
 
       {/* Botón para Adoptar */}
-      <Button colorScheme="teal" size="lg" mt="6" w="full">
+      <Button colorScheme="orange" size="lg" mt="6" w="full">
         Adoptar
       </Button>
     </Box>

@@ -69,7 +69,7 @@ function AdoptionCard() {
         </Text>
 
         {/* Botón "Ver más" */}
-        <Button colorScheme="teal" mt="4" w="full" onClick={handleViewMore}>
+        <Button colorScheme="orange" mt="4" w="full" onClick={handleViewMore}>
           Ver más
         </Button>
       </Box>
