@@ -1,6 +1,16 @@
 import { Box, Flex, Text, Accordion, AccordionItem, AccordionButton, AccordionPanel, AccordionIcon, Link, Image } from '@chakra-ui/react';
+import { useNavigate } from 'react-router-dom'; // Importa useNavigate
 
 const Footer = () => {
+  const navigate = useNavigate(); // Hook para navegar entre rutas
+
+  const handleBlog = () => {
+    navigate('/blog'); // Navega a la ruta del formulario para publicar
+  };
+
+  const handleAyuda = () => {
+    navigate('/ayuda'); // Navega a la ruta del formulario para perdidos
+  };
   return (
     <Box bg="#FF6533" color="#533E5B" py={6}>
       <Flex direction="column" align="center" justify="center" textAlign="center" w="full" maxW="md" mx="auto">
@@ -24,6 +34,7 @@ const Footer = () => {
                 _hover={{ textDecoration: "none" }} 
                 mt={4}
                 fontWeight="300"  // Fuente más fina
+                onClick={handleBlog}
               >
                 Blog
               </Link>
@@ -113,9 +124,17 @@ const Footer = () => {
               </AccordionButton>
             </h2>
             <AccordionPanel color="white" pb={4}>
-              <Text>
-                Encuentra respuestas a preguntas frecuentes o comunícate con nuestro equipo de soporte.
-              </Text>
+            <Link 
+                href="/ayuda" 
+                color="#533E5B"   // El color del título "Sobre Nosotros"
+                textDecoration="none" 
+                _hover={{ textDecoration: "none" }} 
+                mt={4}
+                fontWeight="300"  // Fuente más fina
+                onClick={handleAyuda}
+              >
+                Ayuda
+              </Link>
             </AccordionPanel>
           </AccordionItem>
         </Accordion>

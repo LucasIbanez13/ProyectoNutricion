@@ -8,7 +8,8 @@ import LostAnimals from './components/body/Perdidos/LostAnimals';
 import Publicar from './components/cruds/Publicar';
 import CreatePublic from './components/cruds/forms/CreatePublic';
 import CreatePerdidos from './components/cruds/forms/CreatePerdidos'; // Asegúrate de que está bien importado
-
+import Ayuda from './components/footer/ayuda/Ayuda';
+import Blog from './components/footer/blog/Blog';
 function App() {
   return (
     <Router>
@@ -20,6 +21,9 @@ function App() {
         <Route path="/publicar" element={<Publicar />} />
         <Route path="/createPublic" element={<CreatePublic />} />
         <Route path="/createPerdidos" element={<CreatePerdidos />} /> {/* Ruta para crear Perdidos */}
+        <Route path="/ayuda" element={<Ayuda />} /> {/* Ruta para crear Perdidos */}
+        <Route path="/blog" element={<Blog />} /> {/* Ruta para crear Perdidos */}
+
       </Routes>
       <Footer />
     </Router>
