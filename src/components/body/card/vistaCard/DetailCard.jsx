@@ -1,31 +1,44 @@
-import { Box, Image, Text, Button, HStack, SimpleGrid, GridItem } from '@chakra-ui/react';
+import { Box, Image, Text, Button, HStack, SimpleGrid, GridItem, Icon } from '@chakra-ui/react';
 import { useState } from 'react';
+import { FaPaw } from 'react-icons/fa'; // Importar el ícono de huellitas
 
 function AnimalDetails() {
-  const [selectedImage, setSelectedImage] = useState("https://via.placeholder.com/400x250");
+  const [selectedImage, setSelectedImage] = useState("Imagen de WhatsApp 2024-09-21 a las 18.55.50_6051d243.jpg");
+  const [selectedPaw, setSelectedPaw] = useState(2); // Huella del medio seleccionada por defecto
 
   const images = [
-    "https://via.placeholder.com/400x250",
-    "https://via.placeholder.com/400x250",
-    "https://via.placeholder.com/400x250",
-    "https://via.placeholder.com/400x250"
+    "Imagen de WhatsApp 2024-09-21 a las 18.55.50_6051d243.jpg",
+    "Imagen de WhatsApp 2024-09-21 a las 18.55.50_167189d3.jpg",
+    "Imagen de WhatsApp 2024-09-21 a las 18.55.50_6051d243.jpg",
+    "Imagen de WhatsApp 2024-09-21 a las 18.55.50_167189d3.jpg",
   ];
+
+  const handlePawClick = (index) => {
+    setSelectedPaw(index); // Actualiza la huella seleccionada
+  };
 
   return (
     <Box maxW="md" mx="auto" p="6" boxShadow="lg" borderRadius="lg" bg="white">
-     
-      {/* Imagen principal */}
-      <Image src={selectedImage} alt="Imagen principal del animal" w="full" h="300px" objectFit="cover" borderRadius="md" />
+      {/* Imagen principal con tamaño fijo de 400x250 */}
+      <Image
+        src={selectedImage}
+        alt="Imagen principal del animal"
+        width="400px"  // Tamaño fijo
+        height="300px" // Tamaño fijo
+        objectFit="cover"
+        borderRadius="md"
+        mx="auto"      // Para centrar horizontalmente
+      />
 
-      {/* Carrusel de imágenes pequeñas */}
+      {/* Carrusel de imágenes pequeñas con tamaño fijo */}
       <HStack mt="4" spacing="4" justify="center">
         {images.map((img, index) => (
           <Image
             key={index}
             src={img}
             alt={`Imagen ${index + 1}`}
-            w="75px"
-            h="75px"
+            width="75px"  // Tamaño fijo
+            height="75px" // Tamaño fijo
             objectFit="cover"
             cursor="pointer"
             borderRadius="md"
@@ -44,20 +57,35 @@ function AnimalDetails() {
       <SimpleGrid columns={2} spacing={4} mt={4} justifyItems="center">
         <GridItem>
           <Text fontWeight="bold" textAlign="center">Sexo</Text>
-          <Text textAlign="center">Macho/Hembra</Text>
+          <Text textAlign="center">Macho</Text>
         </GridItem>
+
+        {/* Reemplazo de "Tamaño" por huellitas */}
         <GridItem>
           <Text fontWeight="bold" textAlign="center">Tamaño</Text>
-          <Text textAlign="center">Mediano</Text>
+          <HStack justify="center" mt={2}>
+            {Array(5)
+              .fill('')
+              .map((_, index) => (
+                <Icon
+                  key={index}
+                  as={FaPaw}
+                  boxSize={6}
+                  color={index <= selectedPaw ? 'teal.500' : 'gray.300'}
+                  cursor="pointer"
+                  onClick={() => handlePawClick(index)} // Cambiar la selección al hacer clic
+                />
+              ))}
+          </HStack>
         </GridItem>
 
         <GridItem>
           <Text fontWeight="bold" textAlign="center">Personalidad</Text>
-          <Text textAlign="center">Juguetón, cariñoso</Text>
+          <Text textAlign="center">Juguetón, Cariñoso, Protector</Text>
         </GridItem>
         <GridItem>
-          <Text fontWeight="bold" textAlign="center">Año</Text>
-          <Text textAlign="center">2022</Text>
+          <Text fontWeight="bold" textAlign="center">Mes</Text>
+          <Text textAlign="center">1</Text>
         </GridItem>
 
         <GridItem>

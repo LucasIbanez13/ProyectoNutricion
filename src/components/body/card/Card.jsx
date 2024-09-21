@@ -12,7 +12,7 @@ function AdoptionCard() {
 
   return (
     <Box
-      maxW="sm"
+      maxW="400px" // Tamaño fijo del contenedor
       borderWidth="1px"
       borderRadius="lg"
       overflow="hidden"
@@ -21,13 +21,13 @@ function AdoptionCard() {
       bg="white"
       mb="4"
     >
-      {/* Imagen de la mascota */}
+      {/* Imagen de la mascota con tamaño fijo */}
       <Image
-        src="https://via.placeholder.com/400x250"
+        src="Imagen de WhatsApp 2024-09-21 a las 18.55.50_6051d243.jpg"
         alt="Perrito en adopción"
         objectFit="cover"
-        w="full"
-        h="250px"
+        width="400px" // Fijamos el ancho
+        height="300px" // Fijamos la altura
       />
 
       {/* Corazón para agregar a favoritos */}
