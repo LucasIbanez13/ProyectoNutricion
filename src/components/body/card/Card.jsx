@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Image, Text, IconButton, Button, Flex } from '@chakra-ui/react';
-import { FaHeart } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
+import HeartButton from './HeartButton'; // Asegúrate de que la ruta sea correcta
 
 function AdoptionCard() {
   const navigate = useNavigate();
@@ -27,20 +27,13 @@ function AdoptionCard() {
         alt="Perrito en adopción"
         objectFit="cover"
         width="400px" // Fijamos el ancho
-        height="300px" // Fijamos la altura
+        height="350px" // Fijamos la altura
       />
 
       {/* Corazón para agregar a favoritos */}
-      <IconButton
-        icon={<FaHeart boxSize={8} />} 
-        fontSize="35px"
-        colorScheme="red"
-        variant="ghost"
-        position="absolute"
-        top="2px"
-        right="2px"
-        aria-label="Agregar a favoritos"
-      />
+      <Box position="absolute" top="2" right="2">
+        <HeartButton /> {/* Aquí reemplazas el código del corazón por tu nuevo componente */}
+      </Box>
 
       {/* Ubicación en la esquina inferior derecha de la imagen */}
       <Text
