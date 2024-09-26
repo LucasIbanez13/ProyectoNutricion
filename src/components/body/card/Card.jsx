@@ -79,8 +79,7 @@ function CardContainer() {
       p={4}
     >
       <AdoptionCard />
-      <AdoptionCard />
-      <AdoptionCard />
+
       {/* Añadir más tarjetas aquí */}
     </Flex>
   );
