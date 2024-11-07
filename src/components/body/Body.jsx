@@ -13,8 +13,7 @@ function Body() {
         <>
           <AdoptionRequirements />
           <AdoptionCard />
-          <AdoptionCard />
-          <AdoptionCard />
+
         </>
       )}
       {view === 'lost' && <LostAnimals />}

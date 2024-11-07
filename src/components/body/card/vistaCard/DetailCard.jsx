@@ -1,11 +1,15 @@
 import { Box, Image, Text, Button, HStack, SimpleGrid, GridItem, Icon } from '@chakra-ui/react';
 import { useState } from 'react';
 import { FaPaw } from 'react-icons/fa'; // Importar el ícono de huellitas
+import axios from 'axios';  // Importa axios
+
 
 function AnimalDetails() {
   const [selectedImage, setSelectedImage] = useState("Imagen de WhatsApp 2024-09-21 a las 18.55.50_6051d243.jpg");
   const [selectedPaw, setSelectedPaw] = useState(2); // Huella del medio seleccionada por defecto
 
+
+  
   const images = [
     "Imagen de WhatsApp 2024-09-21 a las 18.55.50_6051d243.jpg",
     "Imagen de WhatsApp 2024-09-21 a las 18.55.50_167189d3.jpg",

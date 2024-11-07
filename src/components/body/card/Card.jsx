@@ -1,18 +1,38 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box, Image, Text, IconButton, Button, Flex } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';  // Importa axios
 import HeartButton from './HeartButton'; // Asegúrate de que la ruta sea correcta
 
 function AdoptionCard() {
   const navigate = useNavigate();
+  const [adoption, setAdoption] = useState(null); // Para almacenar los datos de adopción
+
+  // Cargar datos de la API
+  useEffect(() => {
+    const fetchAdoptionData = async () => {
+      try {
+        const response = await axios.get('http://localhost:3001/api/adoptions'); // Reemplaza con tu URL real
+        setAdoption(response.data[0]); // Suponiendo que deseas la primera adopción
+      } catch (error) {
+        console.error("Error fetching adoption data", error);
+      }
+    };
+
+    fetchAdoptionData();
+  }, []);
 
   const handleViewMore = () => {
     navigate('/details');
   };
 
+  if (!adoption) {
+    return <Text>Cargando...</Text>; // Muestra un mensaje mientras los datos se cargan
+  }
+
   return (
     <Box
-      maxW="400px" // Tamaño fijo del contenedor
+      maxW="400px"
       borderWidth="1px"
       borderRadius="lg"
       overflow="hidden"
@@ -21,44 +41,41 @@ function AdoptionCard() {
       bg="white"
       mb="4"
     >
-      {/* Imagen de la mascota con tamaño fijo */}
+      {/* Imagen de la mascota */}
       <Image
-        src="Imagen de WhatsApp 2024-09-21 a las 18.55.50_6051d243.jpg"
-        alt="Perrito en adopción"
+        src={adoption.imagesAdoptions?.[0]?.url || "default-image.jpg"} // Usa la URL de la primera imagen
+        alt={adoption.animalType?.name || "Perrito en adopción"}
         objectFit="cover"
-        width="400px" // Fijamos el ancho
-        height="350px" // Fijamos la altura
+        width="400px"
+        height="350px"
       />
 
       {/* Corazón para agregar a favoritos */}
       <Box position="absolute" top="2" right="2">
-        <HeartButton /> {/* Aquí reemplazas el código del corazón por tu nuevo componente */}
+        <HeartButton />
       </Box>
 
       {/* Ubicación en la esquina inferior derecha de la imagen */}
       <Text
         position="absolute"
-        bottom="160px" 
-        right="2px" 
+        bottom="160px"
+        right="2px"
         color="white"
         bg="rgba(0, 0, 0, 0.1)"
         p="2"
         borderRadius="md"
         fontSize="sm"
       >
-        Talitas / Tucumán
+        {adoption.location || "Ubicación desconocida"}
       </Text>
 
       {/* Título y detalles de la mascota */}
       <Box p="4">
-        {/* Título */}
         <Text fontWeight="bold" fontSize="xl" mb="2" textAlign="center">
-          Perritos en Adopción
+          {adoption.animalType?.name || "Perritos en Adopción"}
         </Text>
-
-        {/* Sexo */}
         <Text fontSize="md" mb="2" textAlign="center">
-          Macho/Hembra
+          {adoption.gender?.name || "Sexo desconocido"}
         </Text>
 
         {/* Botón "Ver más" */}
@@ -79,7 +96,6 @@ function CardContainer() {
       p={4}
     >
       <AdoptionCard />
-
       {/* Añadir más tarjetas aquí */}
     </Flex>
   );
